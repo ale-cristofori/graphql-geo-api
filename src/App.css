@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -29,4 +33,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.interactions {
+  display: flex;
+  flex-direction: column
+}
+
+.multi-select-years {
+  height: 223px;
+  overflow-y: hidden;
+}
+
+.multi-select-severity {
+  height: 53px;
+  overflow-y: hidden;
 }
