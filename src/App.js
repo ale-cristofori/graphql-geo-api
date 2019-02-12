@@ -101,7 +101,7 @@ class App extends Component {
     var outerScope = this;
     const minCoords = toLonLat([this.state.currentExtent[0], this.state.currentExtent[1]]);
     const maxCoords = toLonLat([this.state.currentExtent[2], this.state.currentExtent[3]]);
-    const lonLatExtent = [maxCoords[0], minCoords[1], minCoords[0], maxCoords[1]];
+    const lonLatExtent = [minCoords[0], minCoords[1], maxCoords[0], maxCoords[1]];
     outerScope.getServerData(this.state.selectedYears, this.state.selectedSeverity, lonLatExtent).then(response => {
       const accPoints = response.data.data.accidents;
       outerScope.setState({accPoints});
