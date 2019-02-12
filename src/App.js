@@ -128,7 +128,7 @@ class App extends Component {
   async getServerData (years, severity, geom) {
     try {
       const response = await axios({
-        url: 'http://www.yomapo.com/edicycle/server/graphql_test.php',
+        url: 'http://www.yomapo.com/edicycle/server/accidents_api.php',
         method: 'post',
         data: {
           query: `
