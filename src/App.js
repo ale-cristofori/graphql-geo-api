@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect  } from 'react';
 import PropTypes from 'prop-types'
 import {fromLonLat, transform, toLonLat} from 'ol/proj.js';
 import axios from 'axios';
@@ -31,7 +31,66 @@ const FilterExtent = (props) => {
   )
 } 
 
-class App extends Component {
+const App = () => {
+  const accYears = ["2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017"];
+  const severity = ["Slight","Serious","Fatal"];
+  const [selectedYears, setSelectedYears] = useState([]);
+  const [selectedSeverity, setSelectedSeverity] = useState([]);
+  const [accPoints, setAccPoints] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState([-355890.8036957806, 7549054.678243506]);
+  const [currentExtent, setCurrentExtent] = useState([]);
+
+  const selectSeverity = (e)  => {
+    const selectedOptions = e.target.selectedOptions;
+    let selectedSeverity = [];
+    for(let item of selectedOptions ) {
+      selectedSeverity.push(item.value);
+    }
+    if (selectedSeverity.length === 0) {selectedSeverity = null};
+    setSelectedSeverity(selectedSeverity);
+  }
+
+  const selectYear = (e)  => {
+    const selectedOptions = e.target.selectedOptions;
+    let selectedYears = [];
+    for(let item of selectedOptions ) {
+      selectedYears.push(parseInt(item.value));
+    }
+    setSelectedYears(selectedYears);
+  }
+  
+  const getInitialExtent = (currentExtent) => {
+    setCurrentExtent(currentExtent);
+  }
+
+  const updateExtent = (e) => {
+    const currentLocation = e.map.getView().getCenter();
+    const currentExtent = e.frameState.extent;
+    setCurrentExtent(currentExtent);
+    setCurrentLocation(currentLocation);
+  }
+
+
+  useEffect (() => {
+    console.log(`selected year is ${selectedYears} and selected severity is ${selectedSeverity}`);
+  });
+
+  return (
+    <div className="App">
+    <div className="controls">
+    <MultiSelect onSelectItems={selectSeverity} options={severity} className="multi-select-severity"/>
+    <MultiSelect onSelectItems={selectYear} options={accYears} className="multi-select-years" />
+    <FilterExtent onFilterExtent={null} />
+    </div>
+    <MapComponent features={accPoints} 
+                    currentLocation={currentLocation}
+                    getinitialExtent={getInitialExtent}
+                    onMapMoved={updateExtent}/>
+    </div>
+  );
+}
+
+/* class App extends Component {
   constructor () {
     super();
     this.state = {
@@ -172,7 +231,7 @@ class App extends Component {
       </div>
     );
   }
-}
+} */
 
 
 export default App;
