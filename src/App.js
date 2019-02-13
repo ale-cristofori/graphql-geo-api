@@ -29,7 +29,22 @@ const FilterExtent = (props) => {
       <input type="button" value="Filter Current Extent" onClick={props.onFilterExtent}/>
     </div>
   )
-} 
+}
+
+const SummaryTable = (props) => {
+  const yearsData = props.accTotal.map(item => <tr><td>{item.year}</td><td>{item.count}</td></tr>);
+  //const countData =  props.accTotal.map(item => <td>{item.count}</td>);
+  return(
+  <div>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>N. of accidents</th>
+      </tr>
+      {yearsData}
+    </table>
+  </div>)
+}
 
 class App extends Component {
   constructor () {
@@ -39,6 +54,60 @@ class App extends Component {
       "2011","2012","2013","2014","2015","2016","2017"],
       severity: ["Slight","Serious","Fatal"],
       accPoints : [],
+      accTotal:  [
+        {
+          "year": 2005,
+          "count": 0
+        },
+        {
+          "year": 2006,
+          "count": 0
+        },
+        {
+          "year": 2007,
+          "count": 0
+        },
+        {
+          "year": 2008,
+          "count": 0
+        },
+        {
+          "year": 2009,
+          "count": 0
+        },
+        {
+          "year": 2010,
+          "count": 0
+        },
+        {
+          "year": 2011,
+          "count": 0
+        },
+        {
+          "year": 2012,
+          "count": 0
+        },
+        {
+          "year": 2013,
+          "count": 0
+        },
+        {
+          "year": 2014,
+          "count": 0
+        },
+        {
+          "year": 2015,
+          "count": 0
+        },
+        {
+          "year": 2016,
+          "count": 0
+        },
+        {
+          "year": 2017,
+          "count": 0
+        }
+      ],
       selectedYears: [],
       selectedSeverity: null,
       currentLocation : [-355890.8036957806, 7549054.678243506],
@@ -104,7 +173,8 @@ class App extends Component {
     const lonLatExtent = [minCoords[0], minCoords[1], maxCoords[0], maxCoords[1]];
     outerScope.getServerData(this.state.selectedYears, this.state.selectedSeverity, lonLatExtent).then(response => {
       const accPoints = response.data.data.accidents;
-      outerScope.setState({accPoints});
+      const accTotal = response.data.data.total;
+      outerScope.setState({accPoints, accTotal});
     }).catch(error=> {
       alert("data not returned from Server, try again later")
       console.log(error)
@@ -117,7 +187,8 @@ class App extends Component {
       var outerScope = this;
       outerScope.getServerData(this.state.selectedYears, this.state.selectedSeverity).then(response => {
         const accPoints = response.data.data.accidents;
-        outerScope.setState({accPoints});
+        const accTotal = response.data.data.total;
+        outerScope.setState({accPoints, accTotal});
       }).catch(error=> {
         alert("data not returned from Server, try again later")
         console.log(error)
@@ -160,15 +231,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <div className="controls">
-        <MultiSelect onSelectItems={this.selectSeverity} options={this.state.severity} className="multi-select-severity"/>
-        <MultiSelect onSelectItems={this.selectYear} options={this.state.accYears} className="multi-select-years" />
-        <FilterExtent onFilterExtent={this.filterExtent} />
-      </div>
-      <MapComponent features={this.state.accPoints} 
-                      currentLocation={this.state.currentLocation}
-                      getinitialExtent={this.getInitialExtent}
-                      onMapMoved={this.updateExtent}/>
+      <div className="container">
+        <div className="controls">
+          <SummaryTable accTotal={this.state.accTotal} />
+          <span>Summary</span>
+          <MultiSelect onSelectItems={this.selectSeverity} options={this.state.severity} className="multi-select-severity"/>
+          <span>Select Casualty Severity Intensity</span>
+          <MultiSelect onSelectItems={this.selectYear} options={this.state.accYears} className="multi-select-years" />
+          <span>Select Accident Years</span>
+          <FilterExtent onFilterExtent={this.filterExtent} />
+        </div>
+        <MapComponent features={this.state.accPoints} 
+                        currentLocation={this.state.currentLocation}
+                        getinitialExtent={this.getInitialExtent}
+                        onMapMoved={this.updateExtent}/>
+        </div>
       </div>
     );
   }
