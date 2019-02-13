@@ -17,6 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+ne_10m_admin_0_countries.*
 
 *.code-workspace
 /example_images

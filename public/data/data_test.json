@@ -1,0 +1,215 @@
+{
+  "type": "FeatureCollection",
+ "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355998.95232045,
+            7548826.973362
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2011,
+          "id": "2011950004597"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356123.29619167,
+            7548806.8921816
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2011,
+          "id": "2011950005317"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356140.88467122,
+            7548788.6004589
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2011,
+          "id": "2011950007288"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355981.36384091,
+            7548845.0663517
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Serious",
+          "year": 2012,
+          "id": "2012950004292"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356035.46511343,
+            7548879.860682
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Serious",
+          "year": 2012,
+          "id": "2012950006229"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356270.90583646,
+            7549090.2206117
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2012,
+          "id": "2012950006819"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356637.36960015,
+            7548637.098948
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Serious",
+          "year": 2011,
+          "id": "2011950001773"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356701.48962685,
+            7549243.520552
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2012,
+          "id": "2012950005213"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355839.9880876,
+            7548919.0293449
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2011,
+          "id": "2011950006075"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355839.76544862,
+            7548901.1350072
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Serious",
+          "year": 2012,
+          "id": "2012950001557"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355880.28574327,
+            7549186.2564039
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Serious",
+          "year": 2012,
+          "id": "2012950002942"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -355859.357679,
+            7549007.905172
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2012,
+          "id": "2012950004217"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356329.01461066,
+            7549357.0559387
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2012,
+          "id": "2012950006102"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -356009.97295004,
+            7549469.7976382
+          ]
+        },
+        "properties": {
+          "casualty_severity": "Slight",
+          "year": 2012,
+          "id": "2012950000055"
+        }
+      }
+    ]
+}

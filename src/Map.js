@@ -72,8 +72,6 @@ class MapComponent extends Component {
 
     }
 
-
-
     constructor (props) {
         super(props);
         this.mapRef = null;

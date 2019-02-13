@@ -38,7 +38,7 @@ const App = () => {
   const [selectedSeverity, setSelectedSeverity] = useState([]);
   const [accPoints, setAccPoints] = useState([]);
   const [currentLocation, setCurrentLocation] = useState([-355890.8036957806, 7549054.678243506]);
-  const [currentExtent, setCurrentExtent] = useState([]);
+  const [currentExtent, setCurrentExtent] = useState(null);
 
   const selectSeverity = (e)  => {
     const selectedOptions = e.target.selectedOptions;
@@ -70,7 +70,7 @@ const App = () => {
     setCurrentLocation(currentLocation);
   }
 
-  const getServerData = async (years, severity, geom)  => {
+  const getServerData = async (years, severity, geom=null)  => {
     try {
       const response = await axios({
         url: 'http://www.yomapo.com/edicycle/server/accidents_api.php',
@@ -95,17 +95,25 @@ const App = () => {
             }
           }
         }`, variables:{years, severity, geom}}});
-        //return response;
+        return response;
     } catch (error){
       alert("data not returned from Server, try again later")
       console.log(error)
     }
   }
 
-
   useEffect (() => {
-    getServerData(selectedYears, selectedSeverity, currentExtent);
-    //setAccPoints(response.data.data.accidents);
+    let lonLatExtent = currentExtent;
+    if (currentExtent) {
+      const minCoords = toLonLat([currentExtent[0], currentExtent[1]]);
+      const maxCoords = toLonLat([currentExtent[2], currentExtent[3]]);
+      lonLatExtent = [minCoords[0], minCoords[1], maxCoords[0], maxCoords[1]];
+    }
+    getServerData(selectedYears, selectedSeverity, lonLatExtent).then(response => {
+      setAccPoints(response.data.data.accidents);
+    }).catch(error => {
+      console.log(error)
+    });
   }, [selectedYears, selectedSeverity, currentExtent]);
 
   return (

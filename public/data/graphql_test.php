@@ -1,7 +1,7 @@
 
 <?php
 require "graphqlPHP/autoload.php";
-require_once('DB.php');
+require "DB.php";
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
@@ -172,10 +172,8 @@ try {
     $query = $input['query'];
     //checks if the input variables are a set
     $variableValues = isset($input['variables']) ? $input['variables'] : null;
-    //determines the root value
-    $rootValue = ['prefix' => 'You said: '];
     //calls the graphQL PHP libraty execute query with the prepared variables
-    $result = GraphQL::executeQuery($schema, $query, $rootValue, $context, $variableValues);
+    $result = GraphQL::executeQuery($schema, $query, null, null, $variableValues);
     //converts the result to a PHP array
     $output = $result->toArray();
 } catch (\Exception $e) {
@@ -187,7 +185,7 @@ try {
 }
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 //encodes the result in a JSON object and responds
 echo json_encode($output);
