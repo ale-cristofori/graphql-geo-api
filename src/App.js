@@ -70,10 +70,43 @@ const App = () => {
     setCurrentLocation(currentLocation);
   }
 
+  const getServerData = async (years, severity, geom)  => {
+    try {
+      const response = await axios({
+        url: 'http://www.yomapo.com/edicycle/server/accidents_api.php',
+        method: 'post',
+        data: {
+          query: `
+          query AccidentsData($years: [Int], $severity: [String], $geom: [Float]) {
+              total(year: $years, severity: $severity, geom: $geom) {
+              year,
+              count
+            }, 
+            accidents(year: $years , severity: $severity, geom: $geom) {
+            type,
+            geometry {
+              type,
+              coordinates
+            },
+            properties {
+              casualty_severity,
+              year,
+              id
+            }
+          }
+        }`, variables:{years, severity, geom}}});
+        //return response;
+    } catch (error){
+      alert("data not returned from Server, try again later")
+      console.log(error)
+    }
+  }
+
 
   useEffect (() => {
-    console.log(`selected year is ${selectedYears} and selected severity is ${selectedSeverity}`);
-  });
+    getServerData(selectedYears, selectedSeverity, currentExtent);
+    //setAccPoints(response.data.data.accidents);
+  }, [selectedYears, selectedSeverity, currentExtent]);
 
   return (
     <div className="App">
@@ -187,7 +220,7 @@ const App = () => {
   async getServerData (years, severity, geom) {
     try {
       const response = await axios({
-        url: 'http://www.yomapo.com/edicycle/server/graphql_test.php',
+        url: 'http://www.yomapo.com/edicycle/server/accidents_api.php',
         method: 'post',
         data: {
           query: `
