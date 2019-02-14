@@ -3,11 +3,13 @@
 ![](demo.gif)
 
 The mapping application uses a graphql API to search and filter through 
-georeferenced cycling accidents in the city of Edinburgh. 
+georeferenced cycling accidents in the city of Edinburgh.
 
 Source data from STATS19 - UK Road Safety Data
 https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data
 
+## Live Demo:
+http://www.yomapo.com/graphqldemo/
 
 Once downloaded in the application root folder do:
 
